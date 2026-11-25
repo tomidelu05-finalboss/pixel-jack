@@ -1,0 +1,2 @@
+# Cuando AdSense apruebe el sitio, agregar debajo esta línea con tu ID de editor:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
