@@ -2,9 +2,9 @@
 <html lang="es">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pixel Jack</title>
+<title>Blackjack Gratis Pixel</title>
 <meta name="description" content="Blackjack pixel art gratis: vos contra el crupier. Zapato de 6 mazos, blackjack paga 3:2 y podés dividir pares. Sin plata real.">
-<meta property="og:title" content="Pixel Jack">
+<meta property="og:title" content="Blackjack Gratis Pixel">
 <meta property="og:description" content="Blackjack pixel art gratis contra el crupier.">
 <meta name="theme-color" content="#06180f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -257,11 +257,12 @@ button.chip:disabled { filter: grayscale(.85) brightness(.5); cursor: not-allowe
 .btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; }
 
 /* ---------- Overlays ---------- */
-.overlay { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; background: rgba(3,10,7,.62);
+.overlay { position: fixed; inset: 0; z-index: 30; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; background: rgba(3,10,7,.62);
   padding-block: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); overflow: auto; }
 .modal { width: 100%; max-width: 520px; box-sizing: border-box; padding: 22px 18px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-.logo-big { margin: 0; font: clamp(30px, 9vw, 54px)/1.15 var(--px); letter-spacing: .02em; }
+.logo-big { margin: 0; font: clamp(24px, 7.4vw, 48px)/1.15 var(--px); letter-spacing: .02em; }
 .logo-big span { display: inline-block; animation: bob 1.8s ease-in-out infinite; }
+.logo-big .sub { display: block; animation: none; font-size: .56em; margin-top: .45em; }
 .logo-big .l1 { color: var(--gold); }
 .logo-big .l2 { color: var(--red); }
 .suits-row { display: flex; gap: 10px; justify-content: center; }
@@ -305,6 +306,7 @@ button.chip:disabled { filter: grayscale(.85) brightness(.5); cursor: not-allowe
   .ad-slot { display: flex; }
   .hud .logo { display: block; font: 22px/1.2 var(--px); text-align: center; padding: 6px 0 8px; }
   .hud .logo .l1 { color: var(--gold); } .hud .logo .l2 { color: var(--red); }
+  .hud .logo .sub { display: block; font-size: 12px; margin-top: 8px; letter-spacing: .08em; }
   .hud .rules { display: block; margin: 6px 0 0; padding: 0; list-style: none; font-size: 18px; color: var(--muted); line-height: 1.15; }
   .stat, .stat.wide { grid-column: auto; padding: 10px 12px; gap: 8px; }
   .lbl { font-size: 8px; }
@@ -363,7 +365,7 @@ button.chip:disabled { filter: grayscale(.85) brightness(.5); cursor: not-allowe
 
 <div id="app">
   <aside class="hud panel" aria-label="Estadísticas">
-    <div class="logo ca"><span class="l1">PIXEL</span> <span class="l2">JACK</span></div>
+    <div class="logo ca"><span class="l1">BLACKJACK</span><span class="l2 sub">GRATIS PIXEL</span></div>
     <div class="stat wide bank"><span class="lbl">BANKROLL</span><span class="val ol" id="vBank">$0</span></div>
     <div class="stat wide betst"><span class="lbl">APUESTA</span><span class="val ol" id="vBet">$0</span></div>
     <div class="stat"><span class="lbl">MANOS</span><span class="val ol" id="vHands">0</span></div>
@@ -434,7 +436,7 @@ button.chip:disabled { filter: grayscale(.85) brightness(.5); cursor: not-allowe
 
 <div class="overlay" id="startScreen">
   <div class="modal panel">
-    <h1 class="logo-big ca" id="logoBig" aria-label="Pixel Jack"></h1>
+    <h1 class="logo-big ca" id="logoBig" aria-label="Blackjack Gratis Pixel"></h1>
     <div class="suits-row" id="suitsRow"></div>
     <p class="tag">Vos contra el crupier.</p>
     <label class="q" for="startAmount">¿CON CUÁNTA PLATA ENTRÁS?</label>
@@ -1442,8 +1444,8 @@ const UI = (() => {
       $("#startChips").appendChild(b);
     });
     const logo = $("#logoBig");
-    logo.innerHTML = [..."PIXEL"].map((ch, i) => `<span class="l1" style="animation-delay:${-i * .15}s">${ch}</span>`).join("") + "<br>" +
-      [..."JACK"].map((ch, i) => `<span class="l2" style="animation-delay:${-(i + 5) * .15}s">${ch}</span>`).join("");
+    logo.innerHTML = [..."BLACKJACK"].map((ch, i) => `<span class="l1" style="animation-delay:${-i * .15}s">${ch}</span>`).join("") +
+      `<span class="sub">` + [..."GRATIS PIXEL"].map((ch, i) => `<span class="l2" style="animation-delay:${-(i + 9) * .15}s">${ch === " " ? "&nbsp;" : ch}</span>`).join("") + `</span>`;
     $("#suitsRow").innerHTML = ["S", "H", "C", "D"].map(s => `<span style="color:${s === "H" || s === "D" ? "var(--red)" : "var(--white)"}">${SUIT_SVG[s]}</span>`).join("");
 
     el.amount.addEventListener("input", () => { el.amount.value = el.amount.value.replace(/\D/g, "").slice(0, 7); el.sErr.textContent = ""; });
