@@ -303,7 +303,7 @@ button.chip:disabled { filter: grayscale(.85) brightness(.5); cursor: not-allowe
   #app { grid-template-columns: 334px minmax(0,1fr); grid-template-rows: minmax(0,1fr) auto; gap: 14px; padding-block: 16px; }
   .hud { grid-row: 1 / span 2; display: flex; flex-direction: column; gap: 10px; padding: 14px; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
   .hud::-webkit-scrollbar { display: none; }
-  .ad-slot { display: flex; }
+  .ad-slot.on { display: flex; }
   .hud .logo { display: block; font: 22px/1.2 var(--px); text-align: center; padding: 6px 0 8px; }
   .hud .logo .l1 { color: var(--gold); } .hud .logo .l2 { color: var(--red); }
   .hud .logo .sub { display: block; font-size: 12px; margin-top: 8px; letter-spacing: .08em; }
@@ -481,11 +481,12 @@ button.chip:disabled { filter: grayscale(.85) brightness(.5); cursor: not-allowe
    0. PUBLICIDAD — completá con tus datos de Google AdSense
       client: tu ID de editor, ej. "ca-pub-1234567890123456"
       slot:   el ID del bloque de anuncios (300×250) que creás en AdSense
-      Mientras estén vacíos se muestra un recuadro de ejemplo.
+      Mientras estén vacíos, el espacio no se muestra.
    ===================================================================== */
 const ADS = { client: "", slot: "" };
 (function initAds() {
   if (!ADS.client || !ADS.slot || !matchMedia("(min-width: 900px) and (min-height: 560px)").matches) return;
+  document.getElementById("adSlot").classList.add("on");
   const box = document.getElementById("adBox");
   box.innerHTML = `<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="${ADS.client}" data-ad-slot="${ADS.slot}"></ins>`;
   const s = document.createElement("script");
